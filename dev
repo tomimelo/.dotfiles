@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+CURRENT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+#ZSH
+rm -f ~/.zshrc ~/.zsh_profile
+ln -s $CURRENT_DIR/.config/zsh/.zshrc ~/.zshrc
+ln -s $CURRENT_DIR/.config/zsh/.zsh_profile ~/.zsh_profile
+
+#TMUX
+rm -rf ~/.config/tmux
+ln -s $CURRENT_DIR/.config/tmux ~/.config/tmux
+
+#I3
+rm -rf ~/.config/i3
+rm -rf ~/.config/i3status
+ln -s $CURRENT_DIR/.config/i3 ~/.config/i3
+ln -s $CURRENT_DIR/.config/i3status ~/.config/i3status
+
+#DUNST
+rm -f /etc/xdg/dunst/dunstrc
+ln -s $CURRENT_DIR/.config/dunst/dunstrc /etc/xdg/dunst/dunstrc
+
+#FEH
+rm -f ~/.fehbg
+ln -s $CURRENT_DIR/.config/feh/.fehbg ~/.fehbg
+
+#PICOM
+rm -rf ~/.config/picom
+ln -s $CURRENT_DIR/.config/picom ~/.config/picom
+
+#SCRIPTS
+rm -rf ~/.local/scripts
+ln -s $CURRENT_DIR/.local/scripts ~/.local/scripts
+
+#BIN
+rm -f ~/.local/bin/tmux-cht
+ln -s $CURRENT_DIR/.local/bin/tmux-cht ~/.local/bin/tmux-cht
+
+rm -f ~/.local/bin/tmux-sessionizer
+ln -s $CURRENT_DIR/.local/bin/tmux-sessionizer ~/.local/bin/tmux-sessionizer
+
+#Setup Stroeer
+$CURRENT_DIR/.config/stroeer/dev
+
