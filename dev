@@ -18,8 +18,8 @@ ln -s $CURRENT_DIR/.config/i3 ~/.config/i3
 ln -s $CURRENT_DIR/.config/i3status ~/.config/i3status
 
 #DUNST
-rm -f /etc/xdg/dunst/dunstrc
-ln -s $CURRENT_DIR/.config/dunst/dunstrc /etc/xdg/dunst/dunstrc
+# rm -f /etc/xdg/dunst/dunstrc
+# ln -s $CURRENT_DIR/.config/dunst/dunstrc /etc/xdg/dunst/dunstrc
 
 #FEH
 rm -f ~/.fehbg
