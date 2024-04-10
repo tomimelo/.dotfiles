@@ -40,6 +40,9 @@ ln -s $CURRENT_DIR/.local/bin/tmux-cht ~/.local/bin/tmux-cht
 rm -f ~/.local/bin/tmux-sessionizer
 ln -s $CURRENT_DIR/.local/bin/tmux-sessionizer ~/.local/bin/tmux-sessionizer
 
-#Setup Stroeer
+#Setup nvim
+$CURRENT_DIR/.config/nvim/dev
+
+#Setup stroeer config
 $CURRENT_DIR/.config/stroeer/dev
 
