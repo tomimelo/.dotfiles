@@ -231,5 +231,8 @@ workspace $ws3 gaps outer 0
 # Move workspace to left monitor
 bindsym $mod+m move workspace to output left
 
+#Take screenshot
+bindsym --release Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+
 # Lock
 bindsym Mod4+l exec "i3lock -c 151621"
