@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]
+  then
+    echo "ERROR: You need to specify the image to set as wallpaper. e.g: 'set-wallpaper my-image.png'"
+    exit
+fi
+
+file=$1
+extension=$(echo $file | awk -F'[.]' '{print $NF}')
+
+if [ $extension != "jpg" ] && [ $extension != "png" ]
+  then
+    echo "ERROR: Only jpg/png images are supported"
+    exit
+fi
+
+file_directory=$(readlink -f $file)
+destination_directory=~/.feh_wallpaper.$extension
+
+cp $file_directory $destination_directory
+
+feh --bg-scale $destination_directory
