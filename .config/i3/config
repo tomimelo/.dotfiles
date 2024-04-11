@@ -131,8 +131,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Define screens
-set $screen1 "DP-3-2"
-set $screen2 "DP-3-3"
+set $screen1 "DP-2-2"
+set $screen2 "DP-2-3"
 
 # Assign workspaces to screens
 workspace $ws1 output $screen1
