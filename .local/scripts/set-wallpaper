@@ -2,7 +2,9 @@
 
 if [ -z "$1" ]
   then
-    echo "ERROR: You need to specify the image to set as wallpaper. e.g: 'set-wallpaper my-image.png'"
+    echo "INFO: No image path specified. Reloading wallpaper..."
+    wallpaper=`ls -a $HOME | grep .feh_wallpaper`
+    feh --bg-scale $wallpaper
     exit
 fi
 
