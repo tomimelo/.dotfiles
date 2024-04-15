@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+displays=`xrandr | grep ' connected ' | awk '{print $1}'`
+displays_list=( $displays )
+displays_count=${#displays_list[@]}
+
+set_single_screen() {
+    $HOME/.local/scripts/omon
+}
+
+set_multiple_screens() {
+    $HOME/.local/scripts/dmon $1 $2
+}
+
+if [ $displays_count -eq 3 ]
+then
+    set_multiple_screens ${displays_list[1]} ${displays_list[2]}
+else
+    set_single_screen
+fi
+

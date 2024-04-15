@@ -1,0 +1,4 @@
+#!/bin/sh
+
+display=${1:-eDP-1}
+xrandr --output $display --mode 3840x2400 --pos 0x0 --rotate normal
