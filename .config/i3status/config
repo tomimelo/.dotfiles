@@ -19,6 +19,10 @@ order += "volume master"
 
 battery all {
         format = "%status %percentage %remaining"
+        status_bat = "🔋 BAT"
+        status_chr = "⚡ CHR"
+        status_unk = "? UNK"
+        status_full = "☻ FULL"
 }
 
 tztime local {
