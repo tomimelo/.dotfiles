@@ -25,6 +25,13 @@ ln -s $CURRENT_DIR/.config/i3status ~/.config/i3status
 rm -rf ~/.config/picom
 ln -s $CURRENT_DIR/.config/picom ~/.config/picom
 
+#FEH
+wallpaper=`ls -a $CURRENT_DIR | grep .feh_wallpaper`
+rm -f ~/.fehbg
+rm -f ~/$wallpaper
+ln -s $CURRENT_DIR/.config/feh/.fehbg ~/.fehbg
+ln -s $CURRENT_DIR/.config/feh/$wallpaper ~/$wallpaper
+
 #SCRIPTS
 rm -rf ~/.local/scripts
 ln -s $CURRENT_DIR/.local/scripts ~/.local/scripts
