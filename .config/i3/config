@@ -122,7 +122,7 @@ bindsym $mod+a focus parent
 set $ws1 "1: Slack"
 set $ws2 "2: Browser"
 set $ws3 "3: Terminal"
-set $ws4 "4: Zoom"
+set $ws4 "4: Calls"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -214,6 +214,7 @@ focus_follows_mouse no
 
 # Default workspaces for applications
 assign [class="Slack"] $ws1
+# assign [title="(Huddle.*Slack)"] $ws4 // TODO Not working
 assign [class="(.*join\?action\=join.*|.*zoom.*)"] $ws4
 
 #Init auto monitor setup
