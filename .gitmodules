@@ -1,6 +1,8 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = git@github.com:tomimelo/init.lua.git
+    branch = main
 [submodule "stroeer"]
 	path = .config/stroeer
 	url = git@github.com:tomimelo/.dotfiles-stroeer.git
+    branch = main
