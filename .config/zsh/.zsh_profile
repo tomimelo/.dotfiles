@@ -13,6 +13,8 @@ alias python='/usr/bin/python3'
 
 alias vim='nvim'
 alias tmux="$tmux -2"
+alias todo='vim $HOME/todo.txt'
+alias byebye='shutdown -P 0'
 
 alias robo='QT_AUTO_SCREEN_SCALE_FACTOR="0" /usr/bin/robo3t &!'
 alias compass='/usr/bin/mongodb-compass &!'
