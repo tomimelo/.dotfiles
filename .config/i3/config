@@ -231,12 +231,12 @@ exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome; workspace $ws3;
 
 #Windows, wallpapers, picom management
 exec ~/.fehbg &
-exec --no-startup-id picom -b
-workspace $ws3 gaps inner 20
-workspace $ws3 gaps outer 0
+# exec --no-startup-id picom -b
+# workspace $ws3 gaps inner 20
+# workspace $ws3 gaps outer 0
 
 # Move workspace to left monitor
-bindsym $mod+m move workspace to output left
+bindsym $mod+m move workspace to output next
 
 #Take screenshot
 bindsym --release Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
