@@ -1,0 +1,55 @@
+#Variables
+VIM="nvim"
+tmux=$(which tmux)
+export personal_projects=$HOME/development/tomimelo
+export GIT_EDITOR=$VIM
+export XDG_CONFIG_HOME=$HOME/.config
+
+#Custom alias
+alias cat='/usr/bin/batcat --paging=never'
+alias catn='/usr/bin/cat'
+alias catp='/usr/bin/batcat'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias python='/usr/bin/python3'
+
+alias vim='nvim'
+alias tmux="$tmux -2"
+alias todo='vim $personal_projects/notes/inbox/todo.md'
+alias byebye='shutdown -P 0'
+alias asdf='setxkbmap dvorak'
+alias aoeu='setxkbmap latam'
+
+alias compass='/usr/bin/mongodb-compass &!'
+
+function update() {
+	sudo apt update && sudo apt install $1
+}
+
+function set-audio() {
+    MIC="alsa_input.usb-Razer_Inc_Razer_Seiren_Mini_UC2315L03205902-00.mono-fallback"
+	case $1 in
+
+  speakers)
+    SINK="alsa_output.pci-0000_00_1f.3.analog-stereo"
+    ;;
+
+  headset)
+    SINK="alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.iec958-stereo"
+    ;;
+
+  *)
+    echo "ERROR: You should specify 'speakers' or 'headset'"
+		return 0
+    ;;
+	esac
+
+    pactl set-default-source $MIC
+    pactl set-default-sink $SINK
+}
+
+#Binds
+bindkey -s ^f "tmux-sessionizer\n"
+
+source ~/.config/stroeer/.stroeerrc

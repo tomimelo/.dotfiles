@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+NVM_DIR="$HOME/.config/nvm"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+export NVM_DIR="$NVIM_DIR"
+source "$NVM_DIR/nvm.sh"
+nvm install --lts
+nvm alias default 'lts/*'
+
+npm config set prefix ~/.local/npm

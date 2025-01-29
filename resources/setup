@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+sudo apt -y update
+
+if ! command -v git &> /dev/null; then
+    sudo apt -y install git
+fi
+
+if [ ! -d $HOME/development/tomimelo ]; then
+    mkdir -p $HOME/development/tomimelo
+fi
+
+git clone https://github.com/tomimelo/.dotfiles $HOME/development/tomimelo/.dotfiles
+
+pushd $HOME/development/tomimelo/.dotfiles
+./run
+popd

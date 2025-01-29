@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+sudo apt install -y libevent ncurses libevent-dev ncurses-dev build-essential bison pkg-config
+git clone https://github.com/tmux/tmux.git $HOME/.tmux
+cd $HOME/.tmux
+sh autogen.sh
+./configure
+make && sudo make install

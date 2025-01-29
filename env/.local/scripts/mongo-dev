@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+
+mongodb_version=6.0-ubi8
+external_port=27018
+container_name="mongo-dev"
+
+if [ -z "$1" ]
+then
+    echo "INFO: Trying to start mongo dev container..."
+    docker run --name $container_name -d -p $external_port:27017 mongodb/mongodb-community-server:$mongodb_version
+    exit
+fi
+
+if [ $1 == "stop" ]
+then
+    echo "INFO: Stopping mongo dev container..."
+    docker stop $container_name && docker rm $container_name
+    exit
+else
+    echo "ERROR: $1 is not a valid argument"
+fi
