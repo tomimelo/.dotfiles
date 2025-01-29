@@ -9,7 +9,7 @@ if [ ! -d $HOME/development/tomimelo ]; then
     mkdir -p $HOME/development/tomimelo
 fi
 
-git clone https://github.com/tomimelo/.dotfiles $HOME/development/tomimelo/.dotfiles
+git clone git@github.com:tomimelo/.dotfiles.git $HOME/development/tomimelo/.dotfiles
 
 pushd $HOME/development/tomimelo/.dotfiles
 ./run
