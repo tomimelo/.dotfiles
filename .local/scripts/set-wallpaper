@@ -4,7 +4,7 @@ if [ -z "$1" ]
   then
     echo "INFO: No image path specified. Reloading wallpaper..."
     wallpaper=`ls -a $HOME | grep .feh_wallpaper`
-    feh --bg-scale $wallpaper
+    feh --bg-scale $HOME/$wallpaper
     exit
 fi
 

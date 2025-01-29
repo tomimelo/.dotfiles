@@ -33,7 +33,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -231,9 +231,13 @@ exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome; workspace $ws3;
 
 #Windows, wallpapers, picom management
 exec ~/.fehbg &
+exec set-wallpaper
 # exec --no-startup-id picom -b
 # workspace $ws3 gaps inner 20
 # workspace $ws3 gaps outer 0
+
+exec set-audio speakers
+exec setxkbmap dvorak
 
 # Move workspace to left monitor
 bindsym $mod+m move workspace to output next
@@ -243,3 +247,6 @@ bindsym --release Print exec --no-startup-id maim -s | xclip -selection clipboar
 
 # Lock
 bindsym Mod4+l exec "i3lock -c 151621"
+
+# Reload monitors
+bindsym Mod4+m exec $HOME/.local/scripts/reload-mon
