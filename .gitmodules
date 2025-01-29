@@ -6,9 +6,3 @@
 	path = .config/stroeer
 	url = git@github.com:tomimelo/.dotfiles-stroeer.git
     branch = main
-[submodule "env/.config/nvim"]
-	path = env/.config/nvim
-	url = https://github.com/tomimelo/init.lua
-[submodule "env/.config/stroeer"]
-	path = env/.config/stroeer
-	url = https://github.com/tomimelo/.dotfiles-stroeer
