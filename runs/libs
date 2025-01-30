@@ -1,5 +1,11 @@
 sudo apt -y update
-sudo apt -y install curl git ripgrep pavucontrol xclip python3-pip openssh-server
+sudo apt -y install curl git bat ripgrep blueman pavucontrol xclip python3-pip openssh-server
 
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-$HOME/.fzf/install
+$HOME/.fzf/install --bin
+
+CHROME_DEB="/tmp/google-chrome.deb"
+curl -Lo "$CHROME_DEB" "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+sudo dpkg -i "$CHROME_DEB"
+sudo apt install -f -y
+rm -f "$CHROME_DEB"
