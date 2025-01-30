@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+dry_run="0"
+
+if [ -z "$DEV_ENV" ]; then
+    echo "env var DEV_ENV needs to be present"
+    exit 1
+fi
+
+if [[ $1 == "--dry" ]]; then
+    dry_run="1"
+fi
+
+log() {
+    if [[ $dry_run == "1" ]]; then
+        echo "[DRY_RUN]: $1"
+    else
+        echo "$1"
+    fi
+}
+
+log "env: $DEV_ENV"
+
+log "copying: $DEV_ENV/resources/fonts to $HOME"
+if [[ $dry_run == "0" ]]; then
+    cp -r $DEV_ENV/resources/fonts $HOME
+fi
