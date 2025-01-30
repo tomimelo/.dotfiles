@@ -9,4 +9,4 @@ rustup update
 git clone https://github.com/sxyazi/yazi.git $HOME/.yazi
 cd $HOME/.yazi
 cargo build --release --locked
-mv target/release/yazi target/release/ya /usr/local/bin/
+sudo mv target/release/yazi target/release/ya /usr/local/bin/

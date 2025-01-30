@@ -21,7 +21,8 @@ log() {
 
 log "env: $DEV_ENV"
 
-log "copying: $DEV_ENV/resources/fonts to $HOME"
+log "copying: $DEV_ENV/resources/fonts/. to $HOME/.fonts"
 if [[ $dry_run == "0" ]]; then
-    cp -r $DEV_ENV/resources/fonts $HOME
+    cp -r $DEV_ENV/resources/fonts/. $HOME/.fonts
+    fc-cache -fv
 fi
