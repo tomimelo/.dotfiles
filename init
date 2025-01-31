@@ -3,6 +3,3 @@ git submodule update
 pushd env/.config/nvim
 git checkout main
 popd
-pushd env/.config/stroeer
-git checkout main
-popd

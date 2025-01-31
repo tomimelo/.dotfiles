@@ -42,6 +42,8 @@ exec --no-startup-id nm-applet
 # Use 25 MiB of RAM for debug logs
 exec i3 --shmlog-size=26214400
 
+exec --no-startup-id /usr/libexec/gsd-xsettings
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status

@@ -1,14 +1,3 @@
-[submodule ".config/nvim"]
-	path = .config/nvim
-	url = git@github.com:tomimelo/init.lua.git
-    branch = main
-[submodule "stroeer"]
-	path = .config/stroeer
-	url = git@github.com:tomimelo/.dotfiles-stroeer.git
-    branch = main
 [submodule "env/.config/nvim"]
 	path = env/.config/nvim
 	url = git@github.com:tomimelo/init.lua.git
-[submodule "env/.config/stroeer"]
-	path = env/.config/stroeer
-	url = git@github.com:tomimelo/.dotfiles-stroeer.git

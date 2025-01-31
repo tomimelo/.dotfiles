@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 sudo apt -y update
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
 if ! command -v git &> /dev/null; then
     sudo apt -y install git

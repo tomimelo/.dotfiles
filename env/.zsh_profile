@@ -53,4 +53,4 @@ function set-audio() {
 #Binds
 bindkey -s ^f "tmux-sessionizer\n"
 
-source ~/.config/stroeer/.stroeerrc
+source ~/.stroeerrc
