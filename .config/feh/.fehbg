@@ -1,2 +1,0 @@
-#!/bin/sh
-feh --no-fehbg --bg-scale '/home/tomas_melone/.feh_wallpaper.jpg' 

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-xrandr --auto
-sleep 3
-$HOME/.local/scripts/automon
