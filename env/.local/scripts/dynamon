@@ -1,0 +1,25 @@
+#!/bin/bash
+
+connected_displays=$(xrandr --query | grep " connected" | awk '{print $1}')
+
+external_monitors=()
+laptop_screen="eDP-1"  # Adjust according to `xrandr` output
+
+for display in $connected_displays; do
+    if [[ "$display" == DP-* ]] || [[ "$display" == DisplayPort-* ]]; then
+        external_monitors+=("$display")
+    fi
+done
+
+if [[ ${#external_monitors[@]} -eq 2 ]]; then
+    resolution1=$(xrandr | grep -A1 "${external_monitors[0]} connected" | tail -n1 | awk '{print $1}')
+    resolution2=$(xrandr | grep -A1 "${external_monitors[1]} connected" | tail -n1 | awk '{print $1}')
+
+    xrandr --output "$laptop_screen" --off \
+           --output "${external_monitors[0]}" --primary --mode "$resolution1" --pos 0x0 --auto \
+           --output "${external_monitors[1]}" --mode "$resolution2" --right-of "${external_monitors[0]}" --auto
+elif [[ ${#external_monitors[@]} -eq 0 ]]; then
+    xrandr --output "$laptop_screen" --auto
+fi
+
+set-wallpaper
