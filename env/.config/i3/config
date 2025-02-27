@@ -226,20 +226,12 @@ assign [class="Slack"] $ws1
 assign [class="(.*join\?action\=join.*|.*zoom.*)"] $ws4
 
 #Init auto monitor setup
-exec --no-startup-id $HOME/.local/scripts/automon
+exec --no-startup-id $HOME/.local/scripts/dynamon
 
 #Open default applications
 exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome; workspace $ws3; exec i3-sensible-terminal'
 
-#Windows, wallpapers, picom management
-# exec ~/.fehbg &
-# exec set-wallpaper
-# exec --no-startup-id picom -b
-# workspace $ws3 gaps inner 20
-# workspace $ws3 gaps outer 0
-
 # exec set-audio speakers
-# exec setxkbmap dvorak
 
 # Move workspace to left monitor
 bindsym $mod+m move workspace to output next
