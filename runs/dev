@@ -2,5 +2,6 @@
 
 sudo apt update
 sudo snap install postman -y
+sudo snap install obsidian --classic
 
 git config --global user.name "Tomas Melone"

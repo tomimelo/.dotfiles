@@ -1,5 +1,5 @@
 sudo apt -y update
-sudo apt -y install curl git bat feh btop ripgrep blueman pavucontrol xclip python3-pip openssh-server
+sudo apt -y install curl git bat feh btop ripgrep blueman pavucontrol maim xclip python3-pip openssh-server
 
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
 $HOME/.fzf/install --bin
