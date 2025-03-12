@@ -33,11 +33,11 @@ function set-audio() {
 	case $1 in
 
   speakers)
-    SINK="alsa_output.pci-0000_00_1f.3.analog-stereo"
+    SINK="alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__hw_sofsoundwire_2__sink"
     ;;
 
   headset)
-    SINK="alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.iec958-stereo"
+    SINK="alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.analog-stereo"
     ;;
 
   *)
