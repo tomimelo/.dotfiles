@@ -1,0 +1,65 @@
+#!/bin/bash
+
+DOZZLE_URL="http://localhost:8080"
+CONTAINER_NAME="dozzle"
+
+start_dozzle() {
+  if ! docker ps --filter "name=^/${CONTAINER_NAME}$" --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+    echo "INFO: Starting Dozzle container..."
+    docker run --name $CONTAINER_NAME -d \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -p 8080:8080 \
+      amir20/dozzle:latest \
+      --enable-actions --no-analytics --level debug
+  else
+    echo "INFO: Dozzle is already running."
+  fi
+}
+
+stop_dozzle() {
+  echo "INFO: Stopping Dozzle container..."
+  docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME
+}
+
+open_logs() {
+  start_dozzle
+
+  if [ -z "$1" ]; then
+    echo "🌐 Opening Dozzle dashboard at $DOZZLE_URL"
+    xdg-open "$DOZZLE_URL" >/dev/null
+  else
+    SERVICE_NAME=$1
+    SHORT_ID=$(docker ps --filter "name=${SERVICE_NAME}" --format "{{.ID}}" | head -n 1)
+
+    if [ -z "$SHORT_ID" ]; then
+      echo "❌ Could not find running container for service '$SERVICE_NAME'"
+      exit 1
+    fi
+
+    SERVICE_URL="$DOZZLE_URL/container/$SHORT_ID"
+    echo "🌐 Opening logs for '$SERVICE_NAME' at $SERVICE_URL"
+    xdg-open "$SERVICE_URL" >/dev/null
+  fi
+}
+
+# MAIN
+
+COMMAND=$1
+SERVICE=$2
+
+case "$COMMAND" in
+  ""|"start")
+    start_dozzle
+    ;;
+  "stop")
+    stop_dozzle
+    ;;
+  "logs")
+    open_logs "$SERVICE"
+    ;;
+  *)
+    echo "❌ Unknown command: $COMMAND"
+    echo "Usage: dozzle [start|stop|logs [<service-name>]]"
+    exit 1
+    ;;
+esac

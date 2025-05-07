@@ -24,6 +24,10 @@ alias aoeu='setxkbmap latam'
 
 alias compass='/usr/bin/mongodb-compass --ignore-additional-command-line-flags --password-store="gnome-libsecret" &!'
 
+function logs() {
+    dozzle logs $1
+}
+
 function update() {
 	sudo apt update && sudo apt install $1
 }
@@ -66,3 +70,6 @@ function y() {
 bindkey -s ^f "tmux-sessionizer\n"
 
 source ~/.stroeerrc
+
+fpath=(~/.config/completions $fpath)
+autoload -Uz compinit && compinit

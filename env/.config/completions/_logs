@@ -1,0 +1,9 @@
+#compdef logs
+
+_logs() {
+  local -a containers
+  containers=("${(@f)$(docker ps --format '{{.Names}}')}")
+  _describe 'running containers' containers
+}
+
+_logs "$@"
