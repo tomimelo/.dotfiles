@@ -229,7 +229,7 @@ assign [class="(.*join\?action\=join.*|.*zoom.*)"] $ws4
 exec --no-startup-id $HOME/.local/scripts/dynamon
 
 #Open default applications
-exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome; workspace $ws3; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg 'workspace $ws2; exec zen; workspace $ws3; exec i3-sensible-terminal'
 
 # exec set-audio speakers
 
