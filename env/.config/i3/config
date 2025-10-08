@@ -244,3 +244,5 @@ bindsym Mod4+l exec "i3lock -c 151621"
 
 # Reload monitors
 bindsym Mod4+m exec $HOME/.local/scripts/reload-mon
+
+bindsym $mod+Shift+b exec zen
