@@ -2,7 +2,7 @@
 dry_run="0"
 
 if [ -z "$XDG_CONFIG_HOME" ]; then
-    echo "no xdg config hom"
+    echo "no xdg config home"
     echo "using ~/.config"
     XDG_CONFIG_HOME=$HOME/.config
 fi
@@ -66,5 +66,7 @@ update_files $DEV_ENV/env/.local $HOME/.local
 copy $DEV_ENV/env/.zsh_profile $HOME/.zsh_profile
 copy $DEV_ENV/env/.zshrc $HOME/.zshrc
 copy $DEV_ENV/env/.xprofile $HOME/.xprofile
-copy $DEV_ENV/resources/.feh_wallpaper.jpg $HOME/.feh_wallpaper.jpg
+# copy $DEV_ENV/resources/.feh_wallpaper.jpg $HOME/.feh_wallpaper.jpg
 copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
+
+hyprctl reload

@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
-sudo apt -y update
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
-if ! command -v git &> /dev/null; then
-    sudo apt -y install git
-fi
+sudo pacman -S --needed base-devel git
+git config --global user.name "Tomas Melone"
+
+git clone https://aur.archlinux.org/paru.git /tmp/paru
+cd /tmp/paru
+makepkg -si
+paru -Sy
 
 if [ ! -d $HOME/development/tomimelo ]; then
     mkdir -p $HOME/development/tomimelo
 fi
 
 git clone git@github.com:tomimelo/.dotfiles.git $HOME/development/tomimelo/.dotfiles
-
 pushd $HOME/development/tomimelo/.dotfiles
+./init
 ./run
 popd

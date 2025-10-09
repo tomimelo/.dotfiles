@@ -22,8 +22,6 @@ alias byebye='shutdown -P 0'
 alias asdf='setxkbmap dvorak'
 alias aoeu='setxkbmap latam'
 
-alias compass='/usr/bin/mongodb-compass --ignore-additional-command-line-flags --password-store="gnome-libsecret" &!'
-
 function logs() {
     dozzle logs $1
 }
@@ -52,18 +50,6 @@ function set-audio() {
 
     pactl set-default-source $MIC
     pactl set-default-sink $SINK
-}
-
-# Yazi
-export EDITOR=$VIM
-
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
 }
 
 #Binds
