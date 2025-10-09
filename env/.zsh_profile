@@ -3,6 +3,7 @@ VIM="nvim"
 tmux=$(which tmux)
 export personal_projects=$HOME/development/tomimelo
 export GIT_EDITOR=$VIM
+export EDITOR=$VIM
 export XDG_CONFIG_HOME=$HOME/.config
 export DEV_ENV=$personal_projects/.dotfiles
 
