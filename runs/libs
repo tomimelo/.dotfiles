@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo pacman -Sy gimp
+sudo pacman -Sy gimp usbutils pciutils bolt
 paru -S --noconfirm --needed fzf rofi-wayland btop curl wget bat ripgrep blueman pavucontrol peek openssh-server
 sudo systemctl enable --now sshd
 paru -S --needed postman-bin obsidian bruno-bin
