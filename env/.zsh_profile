@@ -2,6 +2,8 @@
 VIM="nvim"
 tmux=$(which tmux)
 export personal_projects=$HOME/development/tomimelo
+export PATH=$PATH:$HOME/.local/scripts
+export PATH=$PATH:$HOME/.local/bin
 export GIT_EDITOR=$VIM
 export EDITOR=$VIM
 export XDG_CONFIG_HOME=$HOME/.config

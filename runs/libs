@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-paru -S --noconfirm --needed gimp fzf rofi-wayland btop curl wget bat ripgrep blueman pavucontrol peek openssh-server
+sudo pacman -Sy gimp
+paru -S --noconfirm --needed fzf rofi-wayland btop curl wget bat ripgrep blueman pavucontrol peek openssh-server
 sudo systemctl enable --now sshd
 paru -S --needed postman-bin obsidian bruno-bin
 paru -S ttf-font-awesome waybar ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols
