@@ -6,7 +6,7 @@ background-opacity = 0.85
 background-blur = false
 confirm-close-surface=false
 
-shell-integration-features = no-cursor,no-sudo,no-title
+shell-integration-features = no-cursor,no-sudo,no-title,ssh-env
 gtk-titlebar = false
 
 # what is a prefix?
