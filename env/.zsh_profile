@@ -10,9 +10,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 export DEV_ENV=$personal_projects/.dotfiles
 
 #Custom alias
-alias cat='/usr/bin/batcat --paging=never'
+alias cat='/usr/bin/bat --paging=never'
 alias catn='/usr/bin/cat'
-alias catp='/usr/bin/batcat'
+alias catp='/usr/bin/bat'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
