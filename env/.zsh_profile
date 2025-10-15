@@ -38,7 +38,7 @@ function set-audio() {
 	case $1 in
 
   speakers)
-    SINK="alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__hw_sofsoundwire_2__sink"
+    SINK="alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__Speaker__sink"
     ;;
 
   headset)
