@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 sudo pacman -Sy gimp usbutils pciutils bolt xdg-utils libreoffice-still archlinux-xdg-menu
-paru -S --noconfirm --needed zen-browser-bin google-chrome fzf rofi-wayland btop curl wget bat ripgrep blueman pavucontrol peek openssh-server
+sudo pacman -S gnome-keyring libsecret seahorse
+paru -Sy --noconfirm --needed zen-browser-bin google-chrome fzf rofi-wayland btop curl wget bat ripgrep blueman pavucontrol peek openssh
+sudo systemctl start sshd
 sudo systemctl enable --now sshd
-paru -S --needed postman-bin obsidian bruno-bin
+paru -S --needed postman-bin obsidian bruno-bin mongodb-compass-bin
 paru -S ttf-font-awesome waybar ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols
 paru -S hyprlock --noconfirm --needed
 paru -S ghostty --noconfirm --needed
