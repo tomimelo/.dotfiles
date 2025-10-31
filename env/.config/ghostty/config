@@ -15,3 +15,4 @@ gtk-titlebar = false
 
 # Disable Ctrl+Enter fullscreen keybind
 keybind = ctrl+enter=unbind
+keybind = ctrl+==increase_font_size:1
