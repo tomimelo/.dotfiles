@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo pacman -Sy gimp usbutils pciutils bolt xdg-utils libreoffice-still archlinux-xdg-menu
+sudo pacman -Sy gimp usbutils pciutils bolt xdg-utils libreoffice-still archlinux-xdg-menu noto-fonts-emoji
 sudo pacman -S gnome-keyring libsecret seahorse
 paru -Sy --noconfirm --needed zen-browser-bin google-chrome fzf rofi-wayland btop curl wget bat ripgrep blueman pavucontrol peek openssh
 sudo systemctl start sshd
