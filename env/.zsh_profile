@@ -42,6 +42,7 @@ function set-audio() {
     ;;
 
   headset)
+    # SINK="bluez_output.54_84_50_F2_05_77.1"
     SINK="alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.analog-stereo"
     ;;
 

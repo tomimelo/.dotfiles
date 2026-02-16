@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-nvm_directory = "$HOME/.nvm"
+nvm_directory="$HOME/.nvm"
 sudo pacman -Sy npm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
