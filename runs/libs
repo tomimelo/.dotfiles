@@ -1,11 +1,12 @@
-sudo apt -y update
-sudo apt -y install curl git bat feh btop ripgrep blueman pavucontrol maim xclip peek python3-pip openssh-server
+#!/usr/bin/env bash
 
-git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-$HOME/.fzf/install --bin
-
-CHROME_DEB="/tmp/google-chrome.deb"
-curl -Lo "$CHROME_DEB" "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-sudo dpkg -i "$CHROME_DEB"
-sudo apt install -f -y
-rm -f "$CHROME_DEB"
+sudo pacman -Sy gimp usbutils pciutils bolt xdg-utils libreoffice-still archlinux-xdg-menu noto-fonts-emoji
+sudo pacman -S gnome-keyring libsecret seahorse unrar
+paru -Sy --noconfirm --needed zen-browser-bin google-chrome fzf rofi-wayland btop curl wget bat ripgrep blueman pavucontrol peek openssh
+sudo systemctl start sshd
+sudo systemctl enable --now sshd
+paru -S --needed postman-bin obsidian bruno-bin mongodb-compass-bin
+paru -S ttf-font-awesome waybar ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols
+paru -S hyprlock --noconfirm --needed
+paru -S ghostty --noconfirm --needed
+paru -S hyprpaper hyprshot

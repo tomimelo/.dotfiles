@@ -1,5 +1,9 @@
 #!/bin/bash
 
+mkdir -p $HOME/Pictures/Screenshots
+mkdir -p $HOME/Pictures/Wallpapers
+cp ./resources/wallpapers/* $HOME/Pictures/Wallpapers/
+
 git submodule init
 git submodule update
 pushd env/.config/nvim

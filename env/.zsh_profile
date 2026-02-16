@@ -2,14 +2,17 @@
 VIM="nvim"
 tmux=$(which tmux)
 export personal_projects=$HOME/development/tomimelo
+export PATH=$PATH:$HOME/.local/scripts
+export PATH=$PATH:$HOME/.local/bin
 export GIT_EDITOR=$VIM
+export EDITOR=$VIM
 export XDG_CONFIG_HOME=$HOME/.config
 export DEV_ENV=$personal_projects/.dotfiles
 
 #Custom alias
-alias cat='/usr/bin/batcat --paging=never'
+alias cat='/usr/bin/bat --paging=never'
 alias catn='/usr/bin/cat'
-alias catp='/usr/bin/batcat'
+alias catp='/usr/bin/bat'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -21,8 +24,6 @@ alias todo='vim $personal_projects/notes/inbox/todo.md'
 alias byebye='shutdown -P 0'
 alias asdf='setxkbmap dvorak'
 alias aoeu='setxkbmap latam'
-
-alias compass='/usr/bin/mongodb-compass --ignore-additional-command-line-flags --password-store="gnome-libsecret" &!'
 
 function logs() {
     dozzle logs $1
@@ -37,10 +38,11 @@ function set-audio() {
 	case $1 in
 
   speakers)
-    SINK="alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__hw_sofsoundwire_2__sink"
+    SINK="alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__Speaker__sink"
     ;;
 
   headset)
+    # SINK="bluez_output.54_84_50_F2_05_77.1"
     SINK="alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.analog-stereo"
     ;;
 
@@ -52,18 +54,6 @@ function set-audio() {
 
     pactl set-default-source $MIC
     pactl set-default-sink $SINK
-}
-
-# Yazi
-export EDITOR=$VIM
-
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
 }
 
 #Binds

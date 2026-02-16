@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Simple logout confirmation using rofi-wayland
+
+CHOICE=$(printf "Cancel\nLogout" | rofi -dmenu -p "Are you sure you want to logout?" -theme-str 'window {width: 20em;}')
+
+if [[ "$CHOICE" == "Logout" ]]; then
+  hyprctl dispatch exit
+fi

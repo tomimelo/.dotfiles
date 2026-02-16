@@ -1,0 +1,5 @@
+#!/bin/sh
+# Generic launcher that prevents Electron EPIPE errors
+# Usage: launch-silent <command> [args...]
+
+exec "$@" >/dev/null 2>&1

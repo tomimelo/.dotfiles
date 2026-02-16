@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-sudo apt update
-sudo snap install postman -y
-sudo snap install obsidian --classic
-sudo snap install bruno
-
-git config --global user.name "Tomas Melone"

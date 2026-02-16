@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
-sudo apt install curl npm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
+nvm_directory="$HOME/.nvm"
+sudo pacman -Sy npm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+if [ ! -d "$nvm_directory" ]; then
+    mkdir "$nvm_directory"
+fi
+
+export NVM_DIR="$nvm_directory"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install --lts
 nvm alias default 'lts/*'
