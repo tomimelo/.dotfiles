@@ -54,6 +54,7 @@ button {
 #custom-weather,
 #custom-uptime,
 #temperature,
+#custom-vpn,
 #custom-docker {
   background-color: #101010;
   padding: 0.5rem 1rem;
@@ -154,4 +155,16 @@ button {
 
 #custom-weather.error {
   color: #e78284; /* Red */
+}
+
+#custom-vpn {
+  padding: 0 10px;
+}
+
+#custom-vpn.connected {
+  color: #a6e3a1;
+}
+
+#custom-vpn.disconnected {
+  color: #7f849c;
 }

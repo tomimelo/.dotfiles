@@ -17,6 +17,7 @@
         "cpu",
         "memory",
         "custom/docker",
+        "custom/vpn",
         "tray",
         "custom/lock",
         "custom/power"
@@ -122,5 +123,12 @@
         "interval": 1800,
         "exec": "~/.config/waybar/scripts/weather-stats/weather-stats",
         "return-type": "json"
+    },
+    "custom/vpn": {
+        "exec": "~/.config/waybar/scripts/vpn-status.sh",
+        "interval": 15,
+        "return-type": "json",
+        "tooltip": true,
+        "format": "{}"
     }
 }
