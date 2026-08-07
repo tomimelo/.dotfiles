@@ -10,3 +10,4 @@ paru -S ttf-font-awesome waybar ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols
 paru -S hyprlock --noconfirm --needed
 paru -S ghostty --noconfirm --needed
 paru -S hyprpaper hyprshot
+paru -S handy-bin
