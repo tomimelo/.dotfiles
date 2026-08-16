@@ -24,13 +24,10 @@ alias todo='vim $personal_projects/notes/inbox/todo.md'
 alias byebye='shutdown -P 0'
 alias asdf='setxkbmap dvorak'
 alias aoeu='setxkbmap latam'
+alias nvim-update='git -C $personal_projects/.dotfiles/env/.config/nvim checkout main && git -C $personal_projects/.dotfiles/env/.config/nvim pull && git -C $personal_projects/.dotfiles add env/.config/nvim && { git -C $personal_projects/.dotfiles diff --cached --quiet || git -C $personal_projects/.dotfiles commit -m "chore: update nvim submodule"; }'
 
 function logs() {
     dozzle logs $1
-}
-
-function update() {
-	sudo apt update && sudo apt install $1
 }
 
 function set-audio() {
@@ -58,8 +55,6 @@ function set-audio() {
 
 #Binds
 bindkey -s ^f "tmux-sessionizer\n"
-
-source ~/.stroeerrc
 
 fpath=(~/.config/completions $fpath)
 autoload -Uz compinit && compinit

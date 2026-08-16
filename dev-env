@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
 dry_run="0"
 
 if [ -z "$XDG_CONFIG_HOME" ]; then
@@ -12,7 +14,7 @@ if [ -z "$DEV_ENV" ]; then
     exit 1
 fi
 
-if [[ $1 == "--dry" ]]; then
+if [[ "${1:-}" == "--dry" ]]; then
     dry_run="1"
 fi
 
@@ -24,49 +26,92 @@ log() {
     fi
 }
 
+link() {
+    local source=$1
+    local dest=$2
+
+    if [ ! -e "$source" ] && [ ! -L "$source" ]; then
+        log "skip: $source missing"
+        return 0
+    fi
+
+    mkdir -p "$(dirname "$dest")"
+
+    if [ -L "$dest" ] && [ "$(readlink -f "$dest")" = "$(readlink -f "$source")" ]; then
+        log "ok: $dest already linked"
+        return 0
+    fi
+
+    if [ -e "$dest" ] || [ -L "$dest" ]; then
+        log "removing: $dest"
+        if [[ $dry_run == "0" ]]; then
+            rm -rf "$dest"
+        fi
+    fi
+
+    log "link: $dest -> $source"
+    if [[ $dry_run == "0" ]]; then
+        ln -s "$source" "$dest"
+    fi
+}
+
+link_hypr() {
+    local source=$1
+    local dest=$2
+    local file
+    local name
+
+    # hyprland regenerates a stub config if ~/.config/hypr is removed or
+    # replaced with a symlink, so link the files inside a real dir instead
+    mkdir -p "$dest"
+
+    for file in "$source"/*; do
+        [ -e "$file" ] || [ -L "$file" ] || continue
+        name=$(basename "$file")
+
+        if [ -L "$dest/$name" ] && [ "$(readlink -f "$dest/$name")" = "$(readlink -f "$file")" ]; then
+            log "ok: $dest/$name already linked"
+            continue
+        fi
+
+        log "link: $dest/$name -> $file"
+        if [[ $dry_run == "0" ]]; then
+            ln -sf "$file" "$dest/$name"
+        fi
+    done
+}
+
+link_each() {
+    local source_dir=$1
+    local dest_dir=$2
+    local entry
+    local name
+
+    [ -d "$source_dir" ] || return 0
+
+    for entry in "$source_dir"/*; do
+        name=$(basename "$entry")
+        if [[ "$name" == "hypr" ]]; then
+            link_hypr "$entry" "$dest_dir/$name"
+        else
+            link "$entry" "$dest_dir/$name"
+        fi
+    done
+}
+
+shopt -s dotglob nullglob
+
 log "env: $DEV_ENV"
 
-update_files() {
-    log "copying over files from: $1"
-    pushd $1 &> /dev/null
-    (
-        configs=`find . -mindepth 1 -maxdepth 1 -type d`
-        for c in $configs; do
-            directory=${2%/}/${c#./}
-            log "    removing: rm -rf $directory"
+link_each "$DEV_ENV/env/.config" "$XDG_CONFIG_HOME"
+link_each "$DEV_ENV/env/.local/bin" "$HOME/.local/bin"
+link_each "$DEV_ENV/env/.local/scripts" "$HOME/.local/scripts"
 
-            if [[ $dry_run == "0" ]]; then
-                rm -rf $directory
-            fi
+link "$DEV_ENV/env/.zsh_profile" "$HOME/.zsh_profile"
+link "$DEV_ENV/env/.zshrc" "$HOME/.zshrc"
+link "$DEV_ENV/env/.xprofile" "$HOME/.xprofile"
+link "$DEV_ENV/dev-env" "$HOME/.local/scripts/dev-env"
 
-            log "    copying env: cp $c $2"
-            if [[ $dry_run == "0" ]]; then
-                cp -r ./$c $2
-            fi
-        done
-
-    )
-    popd &> /dev/null
-}
-
-copy() {
-    log "removing: $2"
-    if [[ $dry_run == "0" ]]; then
-        rm $2
-    fi
-    log "copying: $1 to $2"
-    if [[ $dry_run == "0" ]]; then
-        cp $1 $2
-    fi
-}
-
-update_files $DEV_ENV/env/.config $XDG_CONFIG_HOME
-update_files $DEV_ENV/env/.local $HOME/.local
-
-copy $DEV_ENV/env/.zsh_profile $HOME/.zsh_profile
-copy $DEV_ENV/env/.zshrc $HOME/.zshrc
-copy $DEV_ENV/env/.xprofile $HOME/.xprofile
-# copy $DEV_ENV/resources/.feh_wallpaper.jpg $HOME/.feh_wallpaper.jpg
-copy $DEV_ENV/dev-env $HOME/.local/scripts/dev-env
-
-hyprctl reload
+if [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
+    hyprctl reload
+fi
