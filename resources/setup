@@ -1,19 +1,48 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-sudo pacman -S --needed base-devel git
-git config --global user.name "Tomas Melone"
+GIT_NAME="${GIT_NAME:-}"
+GIT_EMAIL="${GIT_EMAIL:-}"
+DEV_ROOT="${DEV_ROOT:-$HOME/development}"
+DEV_USER="${DEV_USER:-tomimelo}"
 
-git clone https://aur.archlinux.org/paru.git /tmp/paru
-cd /tmp/paru
-makepkg -si
-paru -Sy
-
-if [ ! -d $HOME/development/tomimelo ]; then
-    mkdir -p $HOME/development/tomimelo
+if [ -z "$GIT_NAME" ]; then
+    read -r -p "Git user name: " GIT_NAME
+fi
+if [ -z "$GIT_EMAIL" ]; then
+    read -r -p "Git email: " GIT_EMAIL
+fi
+if [ -z "$GIT_NAME" ] || [ -z "$GIT_EMAIL" ]; then
+    echo "git user name and email are required" >&2
+    exit 1
 fi
 
-git clone git@github.com:tomimelo/.dotfiles.git $HOME/development/tomimelo/.dotfiles
-pushd $HOME/development/tomimelo/.dotfiles
+sudo pacman -S --needed --noconfirm base-devel git
+git config --global user.name "$GIT_NAME"
+git config --global user.email "$GIT_EMAIL"
+
+if ! command -v paru &>/dev/null; then
+    git clone https://aur.archlinux.org/paru.git /tmp/paru
+    cd /tmp/paru
+    makepkg -si --noconfirm
+fi
+paru -Sy --noconfirm
+
+projects_dir="$DEV_ROOT/$DEV_USER"
+mkdir -p "$projects_dir"
+
+cat > "$HOME/.dotfiles-local-env" <<EOF
+export personal_projects="$projects_dir"
+EOF
+
+dotfiles_dir="$projects_dir/.dotfiles"
+if [ ! -d "$dotfiles_dir" ]; then
+    git clone git@github.com:tomimelo/.dotfiles.git "$dotfiles_dir"
+fi
+
+cd "$dotfiles_dir"
+export DEV_ENV="$dotfiles_dir"
+
 ./init
+./dev-env
 ./run
-popd

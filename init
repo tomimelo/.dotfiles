@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-mkdir -p $HOME/Pictures/Screenshots
-mkdir -p $HOME/Pictures/Wallpapers
-cp ./resources/wallpapers/* $HOME/Pictures/Wallpapers/
+mkdir -p "$HOME/Pictures/Screenshots"
+mkdir -p "$HOME/Pictures/Wallpapers"
+cp ./resources/wallpapers/* "$HOME/Pictures/Wallpapers/"
 
 git submodule init
 git submodule update
-pushd env/.config/nvim
+pushd env/.config/nvim > /dev/null
 git checkout main
-popd
+popd > /dev/null

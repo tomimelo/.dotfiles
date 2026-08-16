@@ -1,13 +1,14 @@
 #Variables
 VIM="nvim"
 tmux=$(which tmux)
-export personal_projects=$HOME/development/tomimelo
+[ -f "$HOME/.dotfiles-local-env" ] && source "$HOME/.dotfiles-local-env"
+export personal_projects="${personal_projects:-$HOME/development/tomimelo}"
 export PATH=$PATH:$HOME/.local/scripts
 export PATH=$PATH:$HOME/.local/bin
 export GIT_EDITOR=$VIM
 export EDITOR=$VIM
 export XDG_CONFIG_HOME=$HOME/.config
-export DEV_ENV=$personal_projects/.dotfiles
+export DEV_ENV="${DEV_ENV:-$personal_projects/.dotfiles}"
 
 #Custom alias
 alias cat='/usr/bin/bat --paging=never'
