@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-sudo pacman -S --noconfirm neovim lua51 luarocks
-
-git clone https://github.com/ThePrimeagen/harpoon.git $HOME/development/harpoon
-cd $HOME/development/harpoon
-git fetch
-git checkout harpoon2
+paru -S --needed --noconfirm neovim lua51 luarocks
 
 sudo luarocks install luacheck

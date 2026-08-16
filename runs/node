@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-nvm_directory="$HOME/.nvm"
-sudo pacman -Sy npm
+paru -S --needed --noconfirm npm
+
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
-if [ ! -d "$nvm_directory" ]; then
-    mkdir "$nvm_directory"
+export NVM_DIR="$HOME/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+    . "$NVM_DIR/nvm.sh"
 fi
-
-export NVM_DIR="$nvm_directory"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install --lts
 nvm alias default 'lts/*'
