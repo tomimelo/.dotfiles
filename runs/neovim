@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-paru -S --needed --noconfirm neovim lua51 luarocks tree-sitter
+paru -S --needed --noconfirm neovim lua51 luarocks tree-sitter-cli
 
 sudo luarocks install luacheck
