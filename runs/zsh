@@ -2,5 +2,5 @@
 set -euo pipefail
 
 paru -S --needed --noconfirm zsh
-sudo chsh -s "$(command -v zsh)"
+sudo chsh -s "$(command -v zsh)" "$USER"
 RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
