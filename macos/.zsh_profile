@@ -8,8 +8,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 export PATH="$HOME/.local/bin:$PATH"
 
 [ -f "$HOME/.dotfiles-local-env" ] && source "$HOME/.dotfiles-local-env"
-export personal_projects="${personal_projects:-$HOME/development/tomimelo}"
+export personal_projects="${personal_projects:-$HOME/development}"
 
 alias vim='nvim'
+alias nvim-update='git -C $personal_projects/.dotfiles/env/.config/nvim checkout main && git -C $personal_projects/.dotfiles/env/.config/nvim pull && git -C $personal_projects/.dotfiles add env/.config/nvim && { git -C $personal_projects/.dotfiles diff --cached --quiet || git -C $personal_projects/.dotfiles commit -m "chore: update nvim submodule"; }'
 
 bindkey -s ^f "tmux-sessionizer\n"
