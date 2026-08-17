@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dry_run="0"
+
+if [ -z "${XDG_CONFIG_HOME:-}" ]; then
+    XDG_CONFIG_HOME=$HOME/.config
+fi
+
+if [ -z "${DEV_ENV:-}" ]; then
+    echo "env var DEV_ENV needs to be present"
+    exit 1
+fi
+
+if [[ "${1:-}" == "--dry" ]]; then
+    dry_run="1"
+fi
+
+root="$DEV_ENV/macos"
+
+log() {
+    if [[ $dry_run == "1" ]]; then
+        echo "[DRY_RUN]: $1"
+    else
+        echo "$1"
+    fi
+}
+
+link() {
+    local source=$1
+    local dest=$2
+
+    if [ ! -e "$source" ] && [ ! -L "$source" ]; then
+        log "skip: $source missing"
+        return 0
+    fi
+
+    mkdir -p "$(dirname "$dest")"
+
+    if [ -L "$dest" ] && [ "$(readlink -f "$dest")" = "$(readlink -f "$source")" ]; then
+        log "ok: $dest already linked"
+        return 0
+    fi
+
+    if [ -e "$dest" ] || [ -L "$dest" ]; then
+        log "removing: $dest"
+        if [[ $dry_run == "0" ]]; then
+            rm -rf "$dest"
+        fi
+    fi
+
+    log "link: $dest -> $source"
+    if [[ $dry_run == "0" ]]; then
+        ln -s "$source" "$dest"
+    fi
+}
+
+log "env: $DEV_ENV"
+
+link "$root/.config/aerospace" "$XDG_CONFIG_HOME/aerospace"
+link "$root/.config/ghostty" "$XDG_CONFIG_HOME/ghostty"
+link "$root/.config/tmux" "$XDG_CONFIG_HOME/tmux"
+link "$DEV_ENV/env/.config/nvim" "$XDG_CONFIG_HOME/nvim"
+
+link "$root/bin/tmux-sessionizer" "$HOME/.local/bin/tmux-sessionizer"
+
+link "$root/.zsh_profile" "$HOME/.zsh_profile"
+link "$root/.zshrc" "$HOME/.zshrc"
+
+if command -v aerospace >/dev/null 2>&1; then
+    aerospace reload-config >/dev/null 2>&1 || true
+fi

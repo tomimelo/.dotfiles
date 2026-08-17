@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+export DEV_ENV="$PWD"
+
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Install Homebrew first: https://brew.sh" >&2
+    exit 1
+fi
+
+brew install neovim tmux fzf tree-sitter-cli
+brew tap nikitabobko/tap
+brew trust nikitabobko/tap
+brew install --cask ghostty nikitabobko/tap/aerospace
+
+if [ -x "$(brew --prefix)/opt/fzf/install" ]; then
+    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
+fi
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
+fi
+
+git submodule update --init
+git -C env/.config/nvim checkout main || true
+
+mkdir -p "$HOME/.local/bin" "$HOME/.config"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+# Menu bar (clock, tray) on every display. Needs a logout to apply.
+defaults write com.apple.spaces spans-displays -bool false
+defaults write com.apple.dock expose-group-apps -bool true
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.2
+killall Dock 2>/dev/null || true
+
+./macos/dev-env
+
+echo
+echo "Done. Next:"
+echo "  1. Add Dvorak: System Settings → Keyboard → Input Sources"
+echo "  2. Open AeroSpace and allow Accessibility"
+echo "  3. Log out/in"
+echo "  4. open -a AeroSpace"
+echo "Launcher is Spotlight — remap it in System Settings → Keyboard → Shortcuts if you want Cmd+D."

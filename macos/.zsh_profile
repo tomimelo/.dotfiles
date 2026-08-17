@@ -1,0 +1,15 @@
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+export EDITOR=nvim
+export GIT_EDITOR=nvim
+export XDG_CONFIG_HOME=$HOME/.config
+export PATH="$HOME/.local/bin:$PATH"
+
+[ -f "$HOME/.dotfiles-local-env" ] && source "$HOME/.dotfiles-local-env"
+export personal_projects="${personal_projects:-$HOME/development/tomimelo}"
+
+alias vim='nvim'
+
+bindkey -s ^f "tmux-sessionizer\n"
