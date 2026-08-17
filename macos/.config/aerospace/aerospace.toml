@@ -39,6 +39,7 @@ run = 'move-node-to-workspace 3'
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open -na Ghostty'
+alt-e = 'exec-and-forget open -a Finder'
 alt-shift-q = 'close'
 alt-shift-r = 'reload-config'
 alt-shift-space = 'layout floating tiling'
