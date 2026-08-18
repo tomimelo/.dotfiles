@@ -23,7 +23,9 @@ hydrate() {
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find "$HOME/development" -mindepth 1 -maxdepth 1 -type d | fzf)
+    development_root="${development_root:-$HOME/development}"
+    personal_projects="${personal_projects:-$development_root/tomimelo}"
+    selected=$(find "$development_root" "$personal_projects" -mindepth 1 -maxdepth 1 -type d ! -name tomimelo | fzf)
 fi
 
 if [[ -z $selected ]]; then
