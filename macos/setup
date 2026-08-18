@@ -37,11 +37,3 @@ defaults write com.apple.dock autohide-time-modifier -float 0.2
 killall Dock 2>/dev/null || true
 
 ./macos/dev-env
-
-echo
-echo "Done. Next:"
-echo "  1. Add Dvorak: System Settings → Keyboard → Input Sources"
-echo "  2. Open AeroSpace and allow Accessibility"
-echo "  3. Log out/in"
-echo "  4. open -a AeroSpace"
-echo "Launcher is Spotlight — remap it in System Settings → Keyboard → Shortcuts if you want Cmd+D."
