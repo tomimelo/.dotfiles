@@ -12,7 +12,7 @@ fi
 brew install neovim tmux fzf tree-sitter-cli
 brew tap nikitabobko/tap
 brew trust nikitabobko/tap
-brew install --cask ghostty nikitabobko/tap/aerospace
+brew install --cask ghostty nikitabobko/tap/aerospace karabiner-elements
 
 if [ -x "$(brew --prefix)/opt/fzf/install" ]; then
     "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish

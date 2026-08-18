@@ -10,3 +10,5 @@ command = /bin/zsh
 
 keybind = ctrl+enter=unbind
 keybind = ctrl+==increase_font_size:1
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard

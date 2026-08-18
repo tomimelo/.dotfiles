@@ -59,6 +59,7 @@ log "env: $DEV_ENV"
 
 link "$root/.config/aerospace" "$XDG_CONFIG_HOME/aerospace"
 link "$root/.config/ghostty" "$XDG_CONFIG_HOME/ghostty"
+link "$root/.config/karabiner/karabiner.json" "$XDG_CONFIG_HOME/karabiner/karabiner.json"
 link "$root/.config/tmux" "$XDG_CONFIG_HOME/tmux"
 link "$DEV_ENV/env/.config/nvim" "$XDG_CONFIG_HOME/nvim"
 
