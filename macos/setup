@@ -15,6 +15,13 @@ brew trust nikitabobko/tap
 brew install --cask ghostty nikitabobko/tap/aerospace karabiner-elements
 
 brew install colima docker docker-compose docker-buildx
+
+# Docker CLI only scans ~/.docker/cli-plugins on macOS; brew installs plugins
+# under /opt/homebrew/lib/docker/cli-plugins which is never discovered.
+mkdir -p "$HOME/.docker/cli-plugins"
+ln -sf "$(brew --prefix)/lib/docker/cli-plugins/docker-compose" "$HOME/.docker/cli-plugins/docker-compose"
+ln -sf "$(brew --prefix)/lib/docker/cli-plugins/docker-buildx" "$HOME/.docker/cli-plugins/docker-buildx"
+
 colima start --vm-type vz
 brew services start colima
 
