@@ -38,9 +38,12 @@ if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
 run = 'move-node-to-workspace 3'
 
 [mode.main.binding]
-alt-enter = 'exec-and-forget open -na Ghostty'
+alt-enter = '''exec-and-forget osascript -e 'tell application "Ghostty"
+    activate
+    new window
+end tell' '''
 alt-e = 'exec-and-forget open -a Finder'
-alt-shift-q = 'close'
+alt-shift-q = '''exec-and-forget workspace_before_close="$(aerospace list-workspaces --focused)"; aerospace close; aerospace workspace "$workspace_before_close"'''
 alt-shift-r = 'reload-config'
 alt-shift-space = 'layout floating tiling'
 alt-f = 'fullscreen'
