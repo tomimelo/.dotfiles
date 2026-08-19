@@ -14,6 +14,10 @@ brew tap nikitabobko/tap
 brew trust nikitabobko/tap
 brew install --cask ghostty nikitabobko/tap/aerospace karabiner-elements
 
+brew install colima docker docker-compose docker-buildx
+colima start --vm-type vz
+brew services start colima
+
 if [ -x "$(brew --prefix)/opt/fzf/install" ]; then
     "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
 fi
