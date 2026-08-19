@@ -38,6 +38,7 @@ if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
 run = 'move-node-to-workspace 3'
 
 [mode.main.binding]
+cmd-l = '''exec-and-forget osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}' '''
 alt-enter = '''exec-and-forget osascript -e 'tell application "Ghostty"
     activate
     new window
