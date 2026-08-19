@@ -22,7 +22,10 @@ mkdir -p "$HOME/.docker/cli-plugins"
 ln -sf "$(brew --prefix)/lib/docker/cli-plugins/docker-compose" "$HOME/.docker/cli-plugins/docker-compose"
 ln -sf "$(brew --prefix)/lib/docker/cli-plugins/docker-buildx" "$HOME/.docker/cli-plugins/docker-buildx"
 
-colima start --vm-type vz
+# Create the VM in the default ~/.colima location (~/.colima takes precedence
+# over $XDG_CONFIG_HOME and launchd won't have that var), so the brew service
+# starts the same VM the shell uses.
+env -u XDG_CONFIG_HOME colima start --vm-type vz
 brew services start colima
 
 if [ -x "$(brew --prefix)/opt/fzf/install" ]; then
