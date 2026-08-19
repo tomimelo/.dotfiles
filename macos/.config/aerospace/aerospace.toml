@@ -40,8 +40,12 @@ run = 'move-node-to-workspace 3'
 [mode.main.binding]
 cmd-l = '''exec-and-forget osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}' '''
 alt-enter = '''exec-and-forget osascript -e 'tell application "Ghostty"
-    activate
-    new window
+    if running then
+        activate
+        new window
+    else
+        activate
+    end if
 end tell' '''
 alt-e = 'exec-and-forget open -a Finder'
 alt-shift-q = '''exec-and-forget workspace_before_close="$(aerospace list-workspaces --focused)"; aerospace close; aerospace workspace "$workspace_before_close"'''
