@@ -37,7 +37,7 @@ link() {
 
     mkdir -p "$(dirname "$dest")"
 
-    if [ -L "$dest" ] && [ "$(readlink -f "$dest")" = "$(readlink -f "$source")" ]; then
+    if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$source" ]; then
         log "ok: $dest already linked"
         return 0
     fi
