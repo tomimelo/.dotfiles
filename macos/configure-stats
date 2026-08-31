@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOMAIN="eu.exelban.Stats"
+
+if ! [ -d "/Applications/Stats.app" ]; then
+    echo "Stats.app not found, skipping configuration"
+    exit 0
+fi
+
+defaults write "$DOMAIN" CPU_state -bool true
+defaults write "$DOMAIN" CPU_widget -string "mini"
+defaults write "$DOMAIN" CPU_updateInterval -int 1
+
+defaults write "$DOMAIN" RAM_state -bool true
+defaults write "$DOMAIN" RAM_widget -string "mini"
+defaults write "$DOMAIN" RAM_updateInterval -int 1
+
+defaults write "$DOMAIN" Network_state -bool true
+defaults write "$DOMAIN" Network_widget -string "speed"
+
+defaults write "$DOMAIN" Battery_state -bool true
+defaults write "$DOMAIN" Battery_widget -string "battery"
+
+defaults write "$DOMAIN" GPU_state -bool false
+defaults write "$DOMAIN" Sensors_state -bool false
+defaults write "$DOMAIN" Disk_state -bool false
+defaults write "$DOMAIN" Bluetooth_state -bool false
+
+defaults write "$DOMAIN" CPU_oneView -bool false
+defaults write "$DOMAIN" RAM_oneView -bool false
+defaults write "$DOMAIN" Network_oneView -bool false
+defaults write "$DOMAIN" Battery_oneView -bool false
+
+defaults write "$DOMAIN" CombinedModules -bool false
+
+echo "Stats configured: CPU, RAM, Network, Battery enabled"

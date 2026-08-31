@@ -64,6 +64,8 @@ link "$root/.config/tmux" "$XDG_CONFIG_HOME/tmux"
 link "$DEV_ENV/env/.config/nvim" "$XDG_CONFIG_HOME/nvim"
 
 link "$root/bin/tmux-sessionizer" "$HOME/.local/bin/tmux-sessionizer"
+link "$root/bin/colima-agent" "$HOME/.local/bin/colima-agent"
+link "$root/Library/LaunchAgents/com.tomimelo.colima.plist" "$HOME/Library/LaunchAgents/com.tomimelo.colima.plist"
 
 link "$root/.zsh_profile" "$HOME/.zsh_profile"
 link "$root/.zshrc" "$HOME/.zshrc"

@@ -12,7 +12,7 @@ fi
 brew install neovim tmux fzf tree-sitter-cli
 brew tap nikitabobko/tap
 brew trust nikitabobko/tap
-brew install --cask ghostty nikitabobko/tap/aerospace karabiner-elements
+brew install --cask ghostty nikitabobko/tap/aerospace karabiner-elements stats
 
 brew install colima docker docker-compose docker-buildx
 
@@ -22,11 +22,10 @@ mkdir -p "$HOME/.docker/cli-plugins"
 ln -sf "$(brew --prefix)/lib/docker/cli-plugins/docker-compose" "$HOME/.docker/cli-plugins/docker-compose"
 ln -sf "$(brew --prefix)/lib/docker/cli-plugins/docker-buildx" "$HOME/.docker/cli-plugins/docker-buildx"
 
-# Create the VM in the default ~/.colima location (~/.colima takes precedence
-# over $XDG_CONFIG_HOME and launchd won't have that var), so the brew service
-# starts the same VM the shell uses.
-env -u XDG_CONFIG_HOME colima start --vm-type vz --cpus 4 --memory 8 --disk 100
-brew services start colima
+# Migrate off the brew service: it starts colima once and gives up on failure
+# (no retry, no stale-state recovery after unclean shutdowns).
+brew services stop colima >/dev/null 2>&1 || true
+rm -f "$HOME/Library/LaunchAgents/homebrew.mxcl.colima.plist"
 
 if [ -x "$(brew --prefix)/opt/fzf/install" ]; then
     "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
@@ -51,3 +50,8 @@ defaults write com.apple.dock autohide-time-modifier -float 0.2
 killall Dock 2>/dev/null || true
 
 ./macos/dev-env
+./macos/configure-stats
+
+# Auto-start the Docker engine at login via our LaunchAgent.
+launchctl bootout gui/"$(id -u)/com.tomimelo.colima" >/dev/null 2>&1 || true
+launchctl bootstrap gui/"$(id -u)" "$HOME/Library/LaunchAgents/com.tomimelo.colima.plist"
