@@ -37,6 +37,10 @@ run = 'move-node-to-workspace 2'
 if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
 run = 'move-node-to-workspace 3'
 
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 1'
+
 [mode.main.binding]
 cmd-l = '''exec-and-forget osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}' '''
 alt-enter = '''exec-and-forget osascript -e 'tell application "Ghostty"
