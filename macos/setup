@@ -9,7 +9,7 @@ if ! command -v brew >/dev/null 2>&1; then
     exit 1
 fi
 
-brew install neovim tmux fzf tree-sitter-cli
+brew install neovim tmux fzf tree-sitter-cli wireguard-tools
 brew tap nikitabobko/tap
 brew trust nikitabobko/tap
 brew install --cask ghostty nikitabobko/tap/aerospace karabiner-elements slack stats
