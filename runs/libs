@@ -7,6 +7,7 @@ paru -S --needed --noconfirm \
     zen-browser-bin google-chrome fzf rofi-wayland btop curl wget bat ripgrep \
     blueman pavucontrol peek openssh postman-bin obsidian bruno-bin \
     mongodb-compass-bin ttf-font-awesome waybar ttf-jetbrains-mono-nerd \
-    ttf-nerd-fonts-symbols hyprlock ghostty hyprpaper hyprshot handy-bin
+    ttf-nerd-fonts-symbols hyprlock ghostty hyprpaper hyprshot handy-bin \
+    opencode-beta
 
 sudo systemctl enable --now sshd
