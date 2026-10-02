@@ -1,0 +1,15 @@
+background = 000000
+background-opacity = 0.90
+background-blur = false
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+shell-integration-features = no-cursor,no-sudo,no-title,ssh-env
+macos-titlebar-style = hidden
+macos-option-as-alt = true
+command = /bin/zsh
+
+keybind = ctrl+enter=unbind
+keybind = ctrl+==increase_font_size:1
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard

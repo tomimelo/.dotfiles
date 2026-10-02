@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+unset XDG_CONFIG_HOME
+
+# An unclean shutdown leaves Lima believing the VZ VM is still running, making
+# the next start fail with "vz driver is running but host agent is not".
+# Force-clear that stale state before starting.
+env LIMA_HOME="$HOME/.colima/_lima" limactl stop -f colima >/dev/null 2>&1 || true
+
+exec colima start -f --vm-type vz --cpus 4 --memory 8 --disk 100
